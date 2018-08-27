@@ -1,6 +1,9 @@
 package com.google.gwt.sample.stockwatcher.client;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -9,11 +12,16 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class StockWatcher implements EntryPoint
 {
+    private static final Logger LOGGER = Logger.getLogger(StockWatcher.class.getSimpleName());
+
   private VerticalPanel mainPanel = new VerticalPanel();
   private FlexTable stocksFlexTable = new FlexTable();
   private HorizontalPanel addPanel = new HorizontalPanel();
@@ -46,5 +54,17 @@ public class StockWatcher implements EntryPoint
 
     // Move cursor focus to the input box.
     newSymbolTextBox.setFocus( true );
+
+      // Listen for mouse events on the Add button.
+      addStockButton.addClickHandler(event -> addStock());
   }
+
+    /**
+     * Add stock to FlexTable. Executed when the user clicks the addStockButton or
+     * presses enter in the newSymbolTextBox.
+     */
+    private void addStock() {
+        LOGGER.log(Level.INFO, "Clicked" );
+        // TODO Auto-generated method stub
+    }
 }
